@@ -17,11 +17,9 @@ def parse_xr(config):
         data = json.load(f)
         # iterate over each configuration file in the JSON dump
         for r in data:
-#            print("r is ", r)
             # confirm we have a vrf defined, then iterate over them
             if data[r].get('vrf'):
                 for v in data[r]['vrf']:
-#                    print("v is ", v)
                     # confirm there is an ipv4 section, then iterate over the route targets
                     if data[r]['vrf'][v].get('ipv4'):
                         # confirm there is an import stanza
@@ -36,7 +34,6 @@ def parse_xr(config):
                                 r_data = []
                                 r_data.extend((data[r]['hostname'], v, 'export', rte))
                                 r_info.append(r_data)
-#        print("Calling processing with ", r_info)
         pdf(r_info)
 
 def parse_xe(config):
@@ -45,11 +42,9 @@ def parse_xe(config):
         data = json.load(f)
         # iterate over each configuration file in the JSON dump
         for r in data:
-#            print("r is ", r)
             # confirm we have a vrf defined, then iterate over them
             if data[r].get('vrf'):
                 for v in data[r]['vrf']:
-#                    print("v is ", v)
                     # confirm there is an import stanza
                     if data[r]['vrf'][v].get('import'):
                         # In the case of a single RT, this is a string instead of a list
@@ -74,7 +69,6 @@ def parse_xe(config):
                             r_data = []
                             r_data.extend((data[r]['hostname'], v, 'export', data[r]['vrf'][v]['export']))
                             r_info.append(r_data)
-#        print("Calling processing with ", r_info)
         pdf(r_info)
 
 if __name__ == '__main__':

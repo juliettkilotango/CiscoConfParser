@@ -9,7 +9,6 @@ if __name__ == '__main__':
 #    auto = confparser.AutoDissector(raise_no_match=False)
     auto = confparser.AutoDissector()
 #    dissector = confparser.Dissector.from_file('iosxr.yaml')
-#    print(dissector.parse_file('./configs/var02.ash02'))
     auto.register(confparser.Dissector.from_file('iosxr.yaml'), 'RP/')
     auto.register(confparser.Dissector.from_file('ios.yaml'), 'version \d+.\d+$')
     pool = multiprocessing.Pool()
